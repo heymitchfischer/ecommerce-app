@@ -1,4 +1,5 @@
 <h3><%= @product.name %></h3>
+<%= image_tag(@product.image_url) %>
 <p><%= @product.price_format %></p>
 <p><%= @product.description %></p>
 <%= link_to("Edit Product", "/products/#{@product.id}/edit") %>

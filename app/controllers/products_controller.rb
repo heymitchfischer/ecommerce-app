@@ -1,6 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if params[:category_id] && params[:category_id] != ""
+      @category = Category.find(params[:category_id])
+      @products = @category.products
+    else
+      @products = Product.all
+    end
+
+    @categories = Category.all
   end
 
   def show
@@ -8,14 +15,16 @@ class ProductsController < ApplicationController
   end
 
   def new
-    
+    @categories = Category.all
   end
 
   def create
     product = Product.new(
                           name: params[:name],
                           description: params[:description],
-                          price: params[:price]
+                          price: params[:price],
+                          image_url: params[:image_url],
+                          category_id: params[:category_id]
     )
 
     product.save
@@ -25,13 +34,16 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def update
     product = Product.find(params[:id])
     product.update(name: params[:name],
                     description: params[:description],
-                    price: params[:price]
+                    price: params[:price],
+                    image_url: params[:image_url],
+                    category_id: params[:category_id]
       )
 
     redirect_to "/products/#{product.id}"
