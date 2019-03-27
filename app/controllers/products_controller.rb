@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     )
 
     product.save
-
+    flash[:success] = "You created a new product!"
     redirect_to "/products/#{product.id}"
   end
 
@@ -45,14 +45,14 @@ class ProductsController < ApplicationController
                     image_url: params[:image_url],
                     category_id: params[:category_id]
       )
-
+    flash[:success] = "You updated the product!"
     redirect_to "/products/#{product.id}"
   end
 
   def destroy
     product = Product.find(params[:id])
     product.destroy
-
+    flash[:success] = "You destroyed the product."
     redirect_to "/products"
   end
 end

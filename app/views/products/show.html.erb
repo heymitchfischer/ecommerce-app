@@ -2,5 +2,5 @@
 <%= image_tag(@product.image_url) %>
 <p><%= @product.price_format %></p>
 <p><%= @product.description %></p>
-<%= link_to("Edit Product", "/products/#{@product.id}/edit") %>
-<%= link_to("Delete Product", "/products/#{@product.id}", method: :delete, data: {confirm: "Are you sure?"}) %>
+<%= link_to("Edit Product", "/products/#{@product.id}/edit", class: "btn btn-primary") %>
+<%= link_to("Delete Product", "/products/#{@product.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger") %>
