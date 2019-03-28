@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     if params[:category_id] && Category.ids.include?(params[:category_id].to_i)
       @category = Category.find(params[:category_id])

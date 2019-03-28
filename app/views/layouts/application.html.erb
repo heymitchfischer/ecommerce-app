@@ -23,25 +23,37 @@
               Mugs <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/products") %>
             <% end %>
           </li>
-          <li class="nav-item <%= 'active' if current_page?('/products/new') %>">
-            <%= link_to("/products/new", class: "nav-link") do %>
-              Add New Mug <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/products/new") %>
-            <% end %>
-          </li>
+
+          <% if user_signed_in? %>
+            <li class="nav-item <%= 'active' if current_page?('/products/new') %>">
+              <%= link_to("/products/new", class: "nav-link") do %>
+                Add New Mug <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/products/new") %>
+              <% end %>
+            </li>
+          <% end %>
+
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
+              <%= user_signed_in? ? current_user.first_name : "Profile" %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <% if user_signed_in? %>
+                <%= link_to('Edit Profile', edit_user_registration_path, class: "dropdown-item") %>
+                <div class="dropdown-divider"></div>
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %>
+              <% else %>
+                <%= link_to("Login", new_user_session_path, class: "dropdown-item") %>
+                <div class="dropdown-divider"></div>
+                <%= link_to("Sign up", new_user_registration_path, class: "dropdown-item") %>
+              <% end %>
             </div>
           </li>
         </ul>
       </div>
     </nav>
+
+
     <div class="container main-content">
       <%= flash_messages %>
       <%= yield %>
