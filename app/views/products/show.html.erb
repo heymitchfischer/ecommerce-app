@@ -3,7 +3,12 @@
 <p><%= @product.price_format %></p>
 <p><%= @product.description %></p>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.is_admin? %>
   <%= link_to("Edit Product", "/products/#{@product.id}/edit", class: "btn btn-primary") %>
   <%= link_to("Delete Product", "/products/#{@product.id}", method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger") %>
+<% end %>
+
+<%= form_tag("/cart", method: :post) do %>
+  <%= hidden_field_tag(:product_id, @product.id) %>
+  <%= submit_tag("Add to Cart", class: "btn btn-dark") %>
 <% end %>

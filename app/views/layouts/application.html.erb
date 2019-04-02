@@ -24,7 +24,13 @@
             <% end %>
           </li>
 
-          <% if user_signed_in? %>
+          <li class="nav-item <%= 'active' if current_page?('/cart') %>">
+            <%= link_to("/cart", class: "nav-link") do %>
+              Cart <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/cart") %>
+            <% end %>
+          </li>
+
+          <% if user_signed_in? && current_user.is_admin? %>
             <li class="nav-item <%= 'active' if current_page?('/products/new') %>">
               <%= link_to("/products/new", class: "nav-link") do %>
                 Add New Mug <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/products/new") %>

@@ -1,0 +1,5 @@
+<h1>Your Cart:</h1>
+
+<% @items_in_cart.each do |item| %>
+  <h5><%= item.product.name %>: <%= item.product.price_format %></h5>
+<% end %>
