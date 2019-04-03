@@ -4,7 +4,7 @@
     <title>EcommerceApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -26,7 +26,7 @@
 
           <li class="nav-item <%= 'active' if current_page?('/cart') %>">
             <%= link_to("/cart", class: "nav-link") do %>
-              Cart <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/cart") %>
+              Cart <i class="fas fa-shopping-cart"></i> <%= (content_tag :span, "(current)", :class => "sr-only") if current_page?("/cart") %>
             <% end %>
           </li>
 

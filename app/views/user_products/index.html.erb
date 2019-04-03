@@ -2,4 +2,7 @@
 
 <% @items_in_cart.each do |item| %>
   <h5><%= item.product.name %>: <%= item.product.price_format %></h5>
+  <%= link_to("Remove from Cart", "/cart/#{item.id}", method: :delete, class: "btn btn-danger") %>
 <% end %>
+
+<p>Total: <%= current_user.total_price_in_cart %></p>

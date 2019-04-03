@@ -5,4 +5,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :user_products
   has_many :products, through: :user_products
+
+  def products_in_cart
+    user_products.where(removed_from_cart: false)
+  end
+
+  def total_price_in_cart
+    sum = 0
+
+    products_in_cart.each do |user_product|
+      sum += user_product.product[:price]
+    end
+
+    "$%.2f" % (sum / 100.00)
+  end
 end
