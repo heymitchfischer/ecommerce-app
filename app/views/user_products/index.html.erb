@@ -2,7 +2,12 @@
 
 <% @items_in_cart.each do |item| %>
   <h5><%= item.product.name %>: <%= item.product.price_format %></h5>
-  <%= link_to("Remove from Cart", "/cart/#{item.id}", method: :delete, class: "btn btn-danger") %>
+  <%= link_to("Remove from Cart", "/cart/#{item.id}", method: :delete, class: "btn btn-sm btn-danger") %>
 <% end %>
 
-<p>Total: <%= current_user.total_price_in_cart %></p>
+<% if @items_in_cart.any? %>
+  <p>Total: <%= current_user.total_price_in_cart %></p>
+  <%= link_to("Check Out", "/orders", method: :post, class: "btn btn-lg btn-primary") %>
+<% else %>
+  <h4>Your cart is empty. Go buy some Mugs!</h4>
+<% end %>

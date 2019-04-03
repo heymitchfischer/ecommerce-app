@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   get '/cart' => 'user_products#index'
   post '/cart' => 'user_products#create'
   delete '/cart/:id' => 'user_products#destroy'
+  get '/orders' => 'orders#index'
+  post '/orders' => 'orders#create'
+  get '/orders/:id' => 'orders#show'
 end

@@ -1,0 +1,7 @@
+<h1>Your Order History:</h1>
+
+<% @orders.each do |order| %>
+  <div>
+    <%= link_to("#{order.id}: #{order.total_price}", "/orders/#{order.id}", class: "list-group-item list-group-item-action") %>
+  </div>
+<% end %>
