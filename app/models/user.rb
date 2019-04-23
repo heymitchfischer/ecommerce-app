@@ -20,4 +20,14 @@ class User < ApplicationRecord
 
     "$%.2f" % (sum / 100.00)
   end
+
+  def total_price_in_cart_for_stripe
+    sum = 0
+
+    products_in_cart.each do |user_product|
+      sum += user_product.product[:price]
+    end
+
+    sum
+  end
 end
