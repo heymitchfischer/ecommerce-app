@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
                           name: params[:name],
                           description: params[:description],
                           price: params[:price],
-                          image_url: params[:image_url],
+                          image: params[:image],
                           category_id: params[:category_id]
     )
 
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
     if @product.update(name: params[:name],
                         description: params[:description],
                         price: params[:price],
-                        image_url: params[:image_url],
+                        image: params[:image],
                         category_id: params[:category_id]
       )
       flash[:success] = "You updated the product!"

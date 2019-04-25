@@ -1,5 +1,7 @@
 <h3><%= @product.name %></h3>
-<%= image_tag(@product.image_url) %>
+<% if @product.image.attached? %>
+  <%= image_tag(@product.image) %>
+<% end %>
 <p><%= @product.price_format %></p>
 <p><%= @product.description %></p>
 
